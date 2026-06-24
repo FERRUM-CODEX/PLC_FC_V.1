@@ -21,12 +21,10 @@ Incluye:
 
 Este proyecto está pensado para **educación, prototipos, simulación industrial y automatización ligera**.
 
----
 
-# 📸 Capturas del Dashboard
-
-*(Agrega aquí tus imágenes cuando las subas al repo)*
-
+PLC_FC es un PLC virtual portable diseñado para ser programado desde el celular usando Pydroid3 o Thonny.
+Corre en MicroPython y permite probar el lenguaje FC sin necesidad de una computadora.
+La Raspberry Pi Pico es el hardware de referencia, pero el sistema funciona en cualquier entorno compatible con MicroPython.”
 ---
 
 # 🚀 Características principales
