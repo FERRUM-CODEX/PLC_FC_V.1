@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PLC FC - Panel Principal</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: block;
+            width: 260px;
+            margin: 20px auto;
+            padding: 18px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #2ea043;
+        }
+
+        .sub {
+            background: #30363d;
+        }
+
+        .sub:hover {
+            background: #484f58;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PLC FC - Sistema Web</h1>
+
+    <a class="btn" href="/hmi">HMI Minimalista</a>
+    <a class="btn" href="/dashboard">Dashboard Profesional</a>
+    <a class="btn sub" href="/editor">Editor de Bloques FC</a>
+
+    <p style="margin-top: 40px; opacity: 0.6;">
+        Servidor Web del PLC FC<br>
+        Modo Virtual / Híbrido
+    </p>
+
+</body>
+</html>

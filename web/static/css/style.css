@@ -1,0 +1,133 @@
+/* ============================================================
+   ESTILO GLOBAL - PLC FC
+   Tema oscuro profesional para HMI, Dashboard y Editor
+   ============================================================ */
+
+body {
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #e6edf3;
+    text-align: center;
+}
+
+/* Botones */
+.btn {
+    background: #238636;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #2ea043;
+}
+
+/* Paneles */
+.panel {
+    background: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 900px;
+    border: 1px solid #30363d;
+}
+
+/* Tarjetas / Items */
+.item, .io-item {
+    background: #21262d;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Indicadores */
+.indicator {
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+/* Grids */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.io-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+/* Editor FC */
+#sidebar {
+    background: #161b22;
+    border-right: 2px solid #30363d;
+}
+
+.block {
+    background: #238636;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: grab;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.block:hover {
+    background: #2ea043;
+}
+
+.node {
+    background: #21262d;
+    border: 2px solid #30363d;
+    border-radius: 10px;
+    padding: 12px;
+    color: #e6edf3;
+    width: 140px;
+    text-align: center;
+    position: absolute;
+    cursor: move;
+}
+
+/* Topbar del editor */
+#topbar {
+    background: #161b22;
+    border-bottom: 2px solid #30363d;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    gap: 20px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Avanzado — PLC_FC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            box-shadow: 0 0 10px #000;
+        }
+        .label-bright {
+            font-weight: bold;
+            color: #58a6ff;
+            font-size: 1.3rem;
+            text-shadow: 0 0 8px #58a6ff;
+        }
+        .status-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .status-green {
+            color: #00ff00;
+            text-shadow: 0 0 8px #00ff00;
+        }
+        .status-red {
+            color: #ff4d4d;
+            text-shadow: 0 0 8px #ff4d4d;
+        }
+        .status-yellow {
+            color: #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+        }
+        h1 {
+            color: #f0f6fc;
+            text-shadow: 0 0 10px #58a6ff;
+        }
+        h3.section-title {
+            margin-top: 24px;
+            margin-bottom: 8px;
+            color: #f0f6fc;
+            font-weight: bold;
+            text-shadow: 0 0 6px #58a6ff;
+        }
+
+        /* Animaciones SVG */
+        .motor-spin {
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .belt-move circle {
+            animation: belt 0.6s linear infinite;
+        }
+        @keyframes belt {
+            from { transform: translateX(0); }
+            to { transform: translateX(-40px); }
+        }
+
+        .light {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: auto;
+            margin-top: 10px;
+        }
+        .light-on {
+            background: #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .light-off {
+            background: #ff0000;
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        .flow-move polygon {
+            animation: flow 0.5s linear infinite;
+        }
+        @keyframes flow {
+            from { transform: translateX(0); }
+            to { transform: translateX(40px); }
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <h1 class="mb-4">Dashboard Avanzado — PLC_FC</h1>
+
+    <!-- PANEL DE ESTADO DEL PLC -->
+    <h3 class="section-title">Estado del PLC</h3>
+    <div class="card p-3 mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="label-bright">RUN / STOP</div>
+                <div id="plc-run" class="status-value"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="label-bright">Conexión</div>
+                <div id="plc-connection" class="status-value"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="label-bright">Modo</div>
+                <div id="plc-mode" class="status-value"></div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="label-bright">Heartbeat</div>
+                <div id="plc-heartbeat" class="status-value"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="label-bright">Última sincronización</div>
+                <div id="plc-sync" class="status-value"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TENDENCIAS -->
+    <h3 class="section-title">Tendencias en tiempo real</h3>
+    <div class="row" id="charts-container"></div>
+
+    <!-- ANIMACIONES BASE -->
+    <h3 class="section-title">Animaciones del Proceso</h3>
+    <div class="row" id="animation-panel"></div>
+
+    <!-- ANIMACIONES DINÁMICAS POR SALIDA -->
+    <h3 class="section-title">Animaciones Dinámicas</h3>
+    <div class="row" id="dynamic-animations"></div>
+
+    <!-- ANALÓGICAS -->
+    <h3 class="section-title">Analógicas</h3>
+    <div class="row" id="analog-panel"></div>
+
+    <!-- SALIDAS -->
+    <h3 class="section-title">Salidas</h3>
+    <div class="row" id="output-panel"></div>
+
+    <!-- ENTRADAS -->
+    <h3 class="section-title">Entradas</h3>
+    <div class="row" id="input-panel"></div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor FC - PLC FC</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <style>
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            width: 260px;
+            height: 100vh;
+            background: #161b22;
+            padding: 20px;
+            float: left;
+            border-right: 2px solid #30363d;
+        }
+
+        #workspace {
+            margin-left: 260px;
+            height: 100vh;
+            background: #0d1117;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .block {
+            background: #238636;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: grab;
+            text-align: center;
+        }
+
+        .block:hover {
+            background: #2ea043;
+        }
+
+        .node {
+            position: absolute;
+            padding: 12px;
+            background: #21262d;
+            border: 2px solid #30363d;
+            border-radius: 10px;
+            cursor: move;
+            color: #e6edf3;
+            width: 140px;
+            text-align: center;
+        }
+
+        #topbar {
+            position: absolute;
+            top: 0;
+            left: 260px;
+            right: 0;
+            height: 50px;
+            background: #161b22;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            gap: 20px;
+        }
+
+        .btn {
+            background: #238636;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2ea043;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>Bloques FC</h2>
+
+        <div class="block" draggable="true" data-type="AND">AND</div>
+        <div class="block" draggable="true" data-type="OR">OR</div>
+        <div class="block" draggable="true" data-type="NOT">NOT</div>
+        <div class="block" draggable="true" data-type="TIMER">TIMER</div>
+        <div class="block" draggable="true" data-type="COUNTER">COUNTER</div>
+        <div class="block" draggable="true" data-type="OUT">OUT</div>
+    </div>
+
+    <div id="topbar">
+        <div class="btn" onclick="exportDiagram()">Exportar</div>
+        <div class="btn" onclick="importDiagram()">Importar</div>
+        <div class="btn" onclick="clearWorkspace()">Limpiar</div>
+    </div>
+
+    <div id="workspace"></div>
+
+    <script>
+        const workspace = document.getElementById("workspace");
+
+        // -----------------------------
+        // DRAG & DROP DE BLOQUES
+        // -----------------------------
+        document.querySelectorAll(".block").forEach(block => {
+            block.addEventListener("dragstart", e => {
+                e.dataTransfer.setData("type", block.dataset.type);
+            });
+        });
+
+        workspace.addEventListener("dragover", e => e.preventDefault());
+
+        workspace.addEventListener("drop", e => {
+            const type = e.dataTransfer.getData("type");
+            createNode(type, e.clientX - 100, e.clientY - 40);
+        });
+
+        // -----------------------------
+        // CREAR NODO EN EL WORKSPACE
+        // -----------------------------
+        function createNode(type, x, y) {
+            const node = document.createElement("div");
+            node.className = "node";
+            node.style.left = x + "px";
+            node.style.top = y + "px";
+            node.innerText = type;
+
+            // Hacerlo movible
+            node.onmousedown = dragNode;
+
+            workspace.appendChild(node);
+        }
+
+        // -----------------------------
+        // MOVER NODOS
+        // -----------------------------
+        function dragNode(e) {
+            const node = e.target;
+            let offsetX = e.clientX - node.offsetLeft;
+            let offsetY = e.clientY - node.offsetTop;
+
+            function move(ev) {
+                node.style.left = (ev.clientX - offsetX) + "px";
+                node.style.top = (ev.clientY - offsetY) + "px";
+            }
+
+            function stop() {
+                document.removeEventListener("mousemove", move);
+                document.removeEventListener("mouseup", stop);
+            }
+
+            document.addEventListener("mousemove", move);
+            document.addEventListener("mouseup", stop);
+        }
+
+        // -----------------------------
+        // EXPORTAR DIAGRAMA
+        // -----------------------------
+        function exportDiagram() {
+            const nodes = [...document.querySelectorAll(".node")].map(n => ({
+                type: n.innerText,
+                x: n.offsetLeft,
+                y: n.offsetTop
+            }));
+
+            const json = JSON.stringify(nodes, null, 2);
+            alert("Copia este JSON:\n\n" + json);
+        }
+
+        // -----------------------------
+        // IMPORTAR DIAGRAMA
+        // -----------------------------
+        function importDiagram() {
+            const json = prompt("Pega el JSON del diagrama:");
+            if (!json) return;
+
+            clearWorkspace();
+
+            const nodes = JSON.parse(json);
+            nodes.forEach(n => createNode(n.type, n.x, n.y));
+        }
+
+        // -----------------------------
+        // LIMPIAR
+        // -----------------------------
+        function clearWorkspace() {
+            workspace.innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>

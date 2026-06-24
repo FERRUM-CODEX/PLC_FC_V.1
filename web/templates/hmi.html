@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>HMI Completo — PLC_FC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            box-shadow: 0 0 10px #000;
+        }
+        .label-bright {
+            font-weight: bold;
+            color: #58a6ff;
+            font-size: 1.4rem;
+            text-shadow: 0 0 8px #58a6ff;
+        }
+        .indicator-on {
+            background: #00ff00;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        .indicator-off {
+            background: #ff0000;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        .btn-hmi {
+            width: 100%;
+            margin-top: 8px;
+        }
+        .slider-value {
+            font-size: 1rem;
+            color: #58a6ff;
+            font-weight: bold;
+        }
+        h1 {
+            color: #f0f6fc;
+            text-shadow: 0 0 10px #58a6ff;
+        }
+        h3.section-title {
+            margin-top: 24px;
+            margin-bottom: 8px;
+            color: #f0f6fc;
+            font-weight: bold;
+            text-shadow: 0 0 6px #58a6ff;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <h1 class="mb-4">HMI Completo — PLC_FC</h1>
+
+    <h3 class="section-title">Entradas Digitales</h3>
+    <div class="row" id="inputs-container"></div>
+
+    <h3 class="section-title">Salidas Digitales</h3>
+    <div class="row" id="outputs-container"></div>
+
+    <h3 class="section-title">Entradas Analógicas</h3>
+    <div class="row" id="analogs-container"></div>
+
+    <script src="/static/hmi_advanced.js"></script>
+</body>
+</html>
